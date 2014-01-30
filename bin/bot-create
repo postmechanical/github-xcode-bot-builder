@@ -69,4 +69,7 @@ rescue OptionParser::InvalidOption, OptionParser::InvalidArgument, OptionParser:
 	exit 1
 end
 
+options[:short_name] ||= options[:long_name]
+options[:short_name].gsub(/[^[:alnum:]]/, '_')
+
 BotCli.new.create(options.values)

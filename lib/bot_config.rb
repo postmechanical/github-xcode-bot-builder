@@ -5,18 +5,21 @@ class BotConfig
   include Singleton
 
   def initialize
-    if !caller.last.include?("bin/bot-create")
-      @filename = File.expand_path('~/.bot-sync-github.cfg')
-      if (!File.exists? @filename)
-        $stderr.puts "Missing configuration file #{@filename}"
-        exit 1
-      end
+    @filename = File.expand_path('~/.bot-sync-github.cfg')
+    if (!File.exists? @filename)
+      $stderr.puts "Missing configuration file #{@filename}"
+      exit 1
     end
 
     @config = ParseConfig.new(@filename)
 
+    if caller.last.include?("bin/bot-create")
+      params = [:xcode_server, :github_access_token]
+    else
+      params = [:xcode_server, :github_url, :github_repo, :github_access_token, :xcode_devices, :xcode_scheme, :xcode_project_or_workspace]
+    end
     # Make sure every param is configured properly since param will throw an error for a missing key
-    [:xcode_server, :github_url, :github_repo, :github_access_token, :xcode_devices, :xcode_scheme, :xcode_project_or_workspace].each do |key|
+    params.each do |key|
       param key
     end
   end
