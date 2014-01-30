@@ -1,0 +1,72 @@
+#!/usr/bin/env ruby
+#
+#  Created on 2014-01-29.
+#  Copyright (c) 2014. All rights reserved.
+
+$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
+require "bot_cli"
+require 'optparse'
+
+options = {
+	:short_name => nil,
+	:long_name => nil,
+	:branch => nil,
+	:scm_url => nil,
+	:project_path => nil,
+	:scheme_name => nil,
+	:devices => []
+	}
+optparse = OptionParser.new do |opts|
+	opts.banner = "Usage: bot-create"
+	opts.on(
+		'--short-name <name>', 'Bot short name'
+		) do |opt|
+		options[:short_name] = opt
+	end
+	opts.on(
+		'--long-name <name>', 'Bot long name'
+		) do |opt|
+		options[:long_name] = opt
+	end
+	opts.on(
+		'--branch <name>', 'SCM branch name'
+		) do |opt|
+		options[:branch] = opt
+	end
+	opts.on(
+		'--scm-url <url>', 'SCM URL'
+		) do |opt|
+		options[:scm_url] = opt
+	end
+	opts.on(
+		'--project-path <path>', 'Project/workspace path'
+		) do |opt|
+		options[:project_path] = opt
+	end
+	opts.on(
+		'--scheme-name <name>', 'Scheme name'
+		) do |opt|
+		options[:scheme_name] = opt
+	end
+	opts.on(
+		'--devices <devices>', 'Devices list (pipe-delimited)'
+		) do |opt|
+		options[:devices] = opt.split('|')
+	end
+	opts.on(
+		'-h', '--help', 'Display this help.'
+		) do
+		puts opts
+		exit 0
+	end
+end
+
+begin
+	optparse.parse!
+rescue OptionParser::InvalidOption, OptionParser::InvalidArgument, OptionParser::MissingArgument
+	puts $!.to_s
+	puts optparse
+	exit 1
+end
+
+BotCli.new.create(options.values)

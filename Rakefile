@@ -20,8 +20,8 @@ Jeweler::Tasks.new do |gem|
   gem.summary = %Q{Create Xcode bots to run when github pull requests are created or updated}
   gem.description = %Q{A command line tool that can be run via cron that configures and manages Xcode server bots for each pull request}
   gem.email = ""
-  gem.authors = ["ModCloth", "Two Bit Labs", "Geoffery Nix", "Todd Huss"]
-  gem.executables = ['bot-sync-github', 'bot-devices', 'bot-status', 'bot-delete']
+  gem.authors = ["ModCloth", "Two Bit Labs", "Geoffery Nix", "Todd Huss", "Aaron London"]
+  gem.executables = ['bot-sync-github', 'bot-devices', 'bot-status', 'bot-delete', 'bot-create']
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new

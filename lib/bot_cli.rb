@@ -15,7 +15,7 @@ end
 
 class BotCli
 
-def delete(args)
+  def delete(args)
     guid = args[0]
     if (guid == nil || guid.empty?)
       $stderr.puts "Missing guid of bot to delete"
@@ -34,6 +34,11 @@ def delete(args)
 
   def sync_github(args)
     BotGithub.instance.sync
+  end
+
+  # create args will override ~/.bot-sync-github.cfg config file
+  def create(args)
+    BotBuilder.instance.create_bot(args[0], args[1], args[2], args[3], args[4], args[5], args[6])
   end
 
 end

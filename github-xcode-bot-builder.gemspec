@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = "github-xcode-bot-builder"
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["ModCloth", "Two Bit Labs", "Geoffery Nix", "Todd Huss"]
-  s.date = "2013-12-13"
+  s.authors = ["ModCloth", "Two Bit Labs", "Geoffery Nix", "Todd Huss", "Aaron London"]
+  s.date = "2014-01-29"
   s.description = "A command line tool that can be run via cron that configures and manages Xcode server bots for each pull request"
   s.email = ""
-  s.executables = ["bot-sync-github", "bot-devices", "bot-status", "bot-delete"]
+  s.executables = ["bot-sync-github", "bot-devices", "bot-status", "bot-delete", "bot-create"]
   s.extra_rdoc_files = [
     "LICENSE",
     "README.md"
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "bin/bot-create",
     "bin/bot-delete",
     "bin/bot-devices",
     "bin/bot-status",
